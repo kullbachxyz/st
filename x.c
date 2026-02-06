@@ -1067,19 +1067,21 @@ xloadsparefont()
 {
 	FcPattern *fontpattern, *match;
 	FcResult result;
+	int i;
 
-	/* add font2 to font cache as first 4 entries */
-	if ( font2[0] == '-' )
-		fontpattern = XftXlfdParse(font2, False, False);
-	else
-		fontpattern = FcNameParse((FcChar8 *)font2);
-	if ( fontpattern ) {
+	for (i = 0; i < sizeof(font2)/sizeof(*font2); i++) {
+		if ( font2[i][0] == '-' )
+			fontpattern = XftXlfdParse(font2[i], False, False);
+		else
+			fontpattern = FcNameParse((FcChar8 *)font2[i]);
+		if ( !fontpattern )
+			continue;
 		/* Allocate memory for the new cache entries. */
 		frccap += 4;
 		frc = xrealloc(frc, frccap * sizeof(Fontcache));
 		/* add Normal */
 		match = FcFontMatch(NULL, fontpattern, &result);
-		if ( match ) 
+		if ( match )
 			frc[frclen].font = XftFontOpenPattern(xw.dpy, match);
 			if ( frc[frclen].font ) {
 				frc[frclen].flags = FRC_NORMAL;
@@ -1106,7 +1108,7 @@ xloadsparefont()
 			if ( frc[frclen].font ) {
 				frc[frclen].flags = FRC_ITALICBOLD;
 				frclen++;
-			} else 
+			} else
 				FcPatternDestroy(match);
 		/* add Bold */
 		FcPatternDel(fontpattern, FC_SLANT);
@@ -1117,7 +1119,7 @@ xloadsparefont()
 			if ( frc[frclen].font ) {
 				frc[frclen].flags = FRC_BOLD;
 				frclen++;
-			} else 
+			} else
 				FcPatternDestroy(match);
 		FcPatternDestroy(fontpattern);
 	}
