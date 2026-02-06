@@ -5,8 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-static char *font2 = "Roboto Mono for Powerline:pixelsize=12:antialias=true:autohint=true";
+static char *font = "JetBrainsMono Nerd Font Propo:pixelsize=15:antialias=true:autohint=true";
+static const char *font2[] = {
+	"Noto Sans Mono CJK JP:pixelsize=15:antialias=true:autohint=true",
+	"NotoColorEmoji:pixelsize=11:antialias=true:autohint=true",
+};
 static int borderpx = 2;
 
 /*
@@ -100,32 +103,32 @@ float alpha = 0.8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	"#101112",
+	"#a02a2a",
+	"#2f6f4e",
+	"#8f6b3e",
+	"#005577",
+	"#5a4f86",
+	"#4f7f8f",
+	"#b0b3b4",
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	"#6f7273",
+	"#a02a2a",
+	"#2f6f4e",
+	"#8f6b3e",
+	"#005577",
+	"#5a4f86",
+	"#4f7f8f",
+	"#f4f6f7",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+	"#b0b3b4", /* cursor colour */
+	"#222222", /* reverse cursor colour */
+	"#b0b3b4", /* default foreground colour */
+	"#000000", /* default background colour */
 };
 
 
@@ -180,6 +183,8 @@ static uint forcemousemod = ShiftMask;
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
+	{ XK_NO_MOD,            Button4, kscrollup,      {.i = 1} },
+    { XK_NO_MOD,            Button5, kscrolldown,    {.i = 1} },
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
@@ -197,8 +202,8 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
+	{ XK_NO_MOD,            XK_Prior,       zoom,           {.f = +1} },
+	{ XK_NO_MOD,            XK_Next,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
