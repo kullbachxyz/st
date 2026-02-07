@@ -7,6 +7,7 @@
  */
 static char *font = "JetBrainsMono Nerd Font Propo:pixelsize=15:antialias=true:autohint=true";
 static const char *font2[] = {
+	"DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true",
 	"Noto Sans Mono CJK JP:pixelsize=15:antialias=true:autohint=true",
 	"NotoColorEmoji:pixelsize=11:antialias=true:autohint=true",
 };
@@ -77,8 +78,8 @@ static unsigned int cursorthickness = 2;
  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
-const int boxdraw = 0;
-const int boxdraw_bold = 0;
+const int boxdraw = 1;
+const int boxdraw_bold = 1;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
 const int boxdraw_braille = 0;
