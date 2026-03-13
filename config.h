@@ -5,11 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font Propo:pixelsize=15:antialias=true:autohint=true";
+/* static char *font = "JetBrainsMono Nerd Font Propo:pixelsize=15:antialias=true:autohint=true"; */
+static char *font = "mono:pixelsize=16:antialias=true:autohint=true";
 static const char *font2[] = {
 	"DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true",
 	"Noto Sans Mono CJK JP:pixelsize=15:antialias=true:autohint=true",
-	"NotoColorEmoji:pixelsize=11:antialias=true:autohint=true",
+	"NotoColorEmoji:pixelsize=13:antialias=true:autohint=true",
 };
 static int borderpx = 2;
 
