@@ -36,8 +36,20 @@ stdenv.mkDerivation {
 
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/bin $out/share/man/man1
-    make PREFIX=$out install
+
+    mkdir -p $out/bin
+    mkdir -p $out/share/man/man1
+    mkdir -p $out/share/terminfo
+
+    install -Dm755 st $out/bin/st
+
+    if [ -f st.1 ]; then
+      sed "s/VERSION/local/g" < st.1 > $out/share/man/man1/st.1
+      chmod 644 $out/share/man/man1/st.1
+    fi
+
+    ${ncurses}/bin/tic -sx -o $out/share/terminfo st.info
+
     runHook postInstall
   '';
 
