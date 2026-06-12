@@ -10,7 +10,7 @@ static char *font2[] = {
     "Iosevka Nerd Font Propo:pixelsize=17:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=13:antialias=true:autohint=true",
 };
-static int borderpx = 0;
+static int borderpx = 4;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -110,7 +110,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.92;
 
 /* Catppuccin Mocha terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
