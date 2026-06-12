@@ -1,4 +1,6 @@
 *.o
 *.orig
+*.rej
 st
+st-*.tar.gz
 config.h

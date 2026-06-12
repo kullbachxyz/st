@@ -5,10 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:size=12";
+static char *font = "monospace:size=13";
 static char *font2[] = {
-    "Noto Color Emoji:pixelsize=12:antialias=true:autohint=true",
-};static int borderpx = 0;
+    "Iosevka Nerd Font Propo:pixelsize=17:antialias=true:autohint=true",
+    "Noto Color Emoji:pixelsize=13:antialias=true:autohint=true",
+};
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -113,32 +115,32 @@ float alpha = 0.8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	"#1e1e2e", /* base */
+	"#f38ba8", /* red */
+	"#a6e3a1", /* green */
+	"#f9e2af", /* yellow */
+	"#89b4fa", /* blue */
+	"#cba6f7", /* mauve */
+	"#94e2d5", /* teal */
+	"#cdd6f4", /* text */
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	"#6c7086", /* overlay0 */
+	"#f38ba8",
+	"#a6e3a1",
+	"#f9e2af",
+	"#89b4fa",
+	"#cba6f7",
+	"#94e2d5",
+	"#f5e0dc", /* rosewater */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+	"#f5e0dc", /* cursor */
+	"#11111b", /* reverse cursor */
+	"#cdd6f4", /* default foreground colour */
+	"#1e1e2e", /* default background colour */
 };
 
 
