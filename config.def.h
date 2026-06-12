@@ -112,35 +112,35 @@ unsigned int tabspaces = 8;
 /* bg opacity */
 float alpha = 0.8;
 
-/* Terminal colors (16 first used in escape sequence) */
+/* Catppuccin Mocha terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#181825", /* mantle */
+	"#45475a", /* surface1 */
 	"#f38ba8", /* red */
 	"#a6e3a1", /* green */
 	"#f9e2af", /* yellow */
 	"#89b4fa", /* blue */
-	"#cba6f7", /* mauve */
+	"#f5c2e7", /* pink */
 	"#94e2d5", /* teal */
-	"#cdd6f4", /* text */
+	"#bac2de", /* subtext1 */
 
 	/* 8 bright colors */
-	"#6c7086", /* overlay0 */
-	"#f38ba8",
-	"#a6e3a1",
-	"#f9e2af",
-	"#89b4fa",
-	"#cba6f7",
-	"#94e2d5",
-	"#f5e0dc", /* rosewater */
+	"#585b70", /* surface2 */
+	"#f38ba8", /* red */
+	"#a6e3a1", /* green */
+	"#f9e2af", /* yellow */
+	"#89b4fa", /* blue */
+	"#f5c2e7", /* pink */
+	"#94e2d5", /* teal */
+	"#a6adc8", /* subtext0 */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#f5e0dc", /* cursor */
-	"#11111b", /* reverse cursor */
-	"#cdd6f4", /* default foreground colour */
-	"#181825", /* default background colour */
+	"#f5e0dc", /* rosewater cursor */
+	"#11111b", /* crust reverse cursor */
+	"#cdd6f4", /* text default foreground */
+	"#1e1e2e", /* base default background */
 };
 
 
