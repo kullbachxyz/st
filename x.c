@@ -871,9 +871,6 @@ xclear(int x1, int y1, int x2, int y2)
 {
 	Color bg = dc.col[IS_SET(MODE_REVERSE)? defaultfg : defaultbg];
 
-	bg.color.alpha = 0xffff;
-	bg.pixel |= 0xffu << 24;
-
 	XftDrawRect(xw.draw,
 			&bg,
 			x1, y1, x2-x1, y2-y1);
