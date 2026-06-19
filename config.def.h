@@ -5,10 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:size=13";
+static char *font = "Noto Sans Mono:size=13";
 static char *font2[] = {
-    "Iosevka Nerd Font Propo:pixelsize=17:antialias=true:autohint=true",
-    "Noto Color Emoji:pixelsize=13:antialias=true:autohint=true",
+    "Noto Color Emoji:pixelsize=15:antialias=true:autohint=true",
+    "Noto Sans CJK SC:pixelsize=13:antialias=true:autohint=true",
 };
 static int borderpx = 4;
 
@@ -112,35 +112,35 @@ unsigned int tabspaces = 8;
 /* bg opacity */
 float alpha = 0.92;
 
-/* Catppuccin Mocha terminal colors (16 first used in escape sequence) */
+/* Tomorrow Night (dark saturated) terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#45475a", /* surface1 */
-	"#f38ba8", /* red */
-	"#a6e3a1", /* green */
-	"#f9e2af", /* yellow */
-	"#89b4fa", /* blue */
-	"#f5c2e7", /* pink */
-	"#94e2d5", /* teal */
-	"#bac2de", /* subtext1 */
+	"#1d1f21", /* black */
+	"#770000", /* red */
+	"#005500", /* green */
+	"#776600", /* yellow */
+	"#005577", /* blue */
+	"#550055", /* magenta */
+	"#007766", /* cyan */
+	"#777777", /* white */
 
 	/* 8 bright colors */
-	"#585b70", /* surface2 */
-	"#f38ba8", /* red */
-	"#a6e3a1", /* green */
-	"#f9e2af", /* yellow */
-	"#89b4fa", /* blue */
-	"#f5c2e7", /* pink */
-	"#94e2d5", /* teal */
-	"#a6adc8", /* subtext0 */
+	"#555555", /* bright black */
+	"#aa3333", /* bright red */
+	"#33aa33", /* bright green */
+	"#aa8833", /* bright yellow */
+	"#3377aa", /* bright blue */
+	"#8833aa", /* bright magenta */
+	"#33aaaa", /* bright cyan */
+	"#aaaaaa", /* bright white */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#f5e0dc", /* rosewater cursor */
-	"#11111b", /* crust reverse cursor */
-	"#cdd6f4", /* text default foreground */
-	"#1e1e2e", /* base default background */
+	"#c5c8c6", /* default foreground */
+	"#1d1f21", /* default background */
+	"#c5c8c6", /* cursor */
+	"#1d1f21", /* reverse cursor */
 };
 
 
@@ -148,10 +148,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 256;
+unsigned int defaultbg = 257;
+unsigned int defaultcs = 258;
+static unsigned int defaultrcs = 259;
 
 /*
  * Default shape of cursor
