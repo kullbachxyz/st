@@ -10,7 +10,7 @@ static char *font2[] = {
     "Noto Color Emoji:pixelsize=15:antialias=true:autohint=true",
     "Noto Sans CJK SC:pixelsize=13:antialias=true:autohint=true",
 };
-static int borderpx = 4;
+static int borderpx = 2;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -112,35 +112,35 @@ unsigned int tabspaces = 8;
 /* bg opacity */
 float alpha = 0.92;
 
-/* Tomorrow Night (dark saturated) terminal colors (16 first used in escape sequence) */
+/* Gruvbox Dark terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#1d1f21", /* black */
-	"#770000", /* red */
-	"#005500", /* green */
-	"#776600", /* yellow */
-	"#005577", /* blue */
-	"#550055", /* magenta */
-	"#007766", /* cyan */
-	"#777777", /* white */
+	"#282828", /* black */
+	"#cc241d", /* red */
+	"#98971a", /* green */
+	"#d79921", /* yellow */
+	"#458588", /* blue */
+	"#b16286", /* magenta */
+	"#689d6a", /* cyan */
+	"#a89984", /* white */
 
 	/* 8 bright colors */
-	"#555555", /* bright black */
-	"#aa3333", /* bright red */
-	"#33aa33", /* bright green */
-	"#aa8833", /* bright yellow */
-	"#3377aa", /* bright blue */
-	"#8833aa", /* bright magenta */
-	"#33aaaa", /* bright cyan */
-	"#aaaaaa", /* bright white */
+	"#928374", /* bright black */
+	"#fb4934", /* bright red */
+	"#b8bb26", /* bright green */
+	"#fabd2f", /* bright yellow */
+	"#83a598", /* bright blue */
+	"#d3869b", /* bright magenta */
+	"#8ec07c", /* bright cyan */
+	"#ebdbb2", /* bright white */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#c5c8c6", /* default foreground */
-	"#1d1f21", /* default background */
-	"#c5c8c6", /* cursor */
-	"#1d1f21", /* reverse cursor */
+	"#ebdbb2", /* default foreground */
+	"#282828", /* default background */
+	"#ebdbb2", /* cursor */
+	"#282828", /* reverse cursor */
 };
 
 
