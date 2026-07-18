@@ -14,6 +14,7 @@
 #include <X11/keysym.h>
 #include <X11/Xft/Xft.h>
 #include <X11/XKBlib.h>
+#include <X11/Xresource.h>
 
 char *argv0;
 #include "arg.h"
@@ -2176,6 +2177,73 @@ usage(void)
 	    " [stty_args ...]\n", argv0, argv0);
 }
 
+void
+resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst)
+{
+	char **sdst = dst;
+	int *idst = dst;
+	float *fdst = dst;
+
+	char fullname[256];
+	char fullclass[256];
+	char *type;
+	XrmValue ret;
+
+	snprintf(fullname, sizeof(fullname), "%s.%s",
+			opt_name ? opt_name : "st", name);
+	snprintf(fullclass, sizeof(fullclass), "%s.%s",
+			opt_class ? opt_class : "St", name);
+	fullname[sizeof(fullname) - 1] = fullclass[sizeof(fullclass) - 1] = '\0';
+
+	XrmGetResource(db, fullname, fullclass, &type, &ret);
+	if (ret.addr == NULL || strncmp("String", type, 64))
+		return;
+
+	switch (rtype) {
+	case STRING:
+		*sdst = ret.addr;
+		break;
+	case INTEGER:
+		*idst = strtoul(ret.addr, NULL, 10);
+		break;
+	case FLOAT:
+		*fdst = strtof(ret.addr, NULL);
+		break;
+	}
+}
+
+void
+config_init(void)
+{
+	char *resm;
+	XrmDatabase db;
+	ResourcePref *p;
+	Display *dpy;
+
+	if (!(dpy = XOpenDisplay(NULL)))
+		return;
+
+	XrmInitialize();
+	resm = XResourceManagerString(dpy);
+	if (resm) {
+		db = XrmGetStringDatabase(resm);
+		for (p = resources; p < resources + LEN(resources); p++)
+			resource_load(db, p->name, p->type, p->dst);
+	}
+	XCloseDisplay(dpy);
+}
+
+void
+reload(int sig)
+{
+	config_init();
+	xloadcols();
+	redraw();
+
+	/* keep handling SIGUSR1 across theme switches */
+	signal(SIGUSR1, reload);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -2240,12 +2308,14 @@ run:
 
 	setlocale(LC_CTYPE, "");
 	XSetLocaleModifiers("");
+	config_init();
 	cols = MAX(cols, 1);
 	rows = MAX(rows, 1);
 	tnew(cols, rows);
 	xinit(cols, rows);
 	xsetenv();
 	selinit();
+	signal(SIGUSR1, reload);
 	run();
 
 	return 0;
