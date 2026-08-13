@@ -6,11 +6,13 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Noto Sans Mono:size=13";
+/* Iosevka Nerd Font first, else Noto Color Emoji grabs the Nerd PUA glyphs. */
 static char *font2[] = {
+    "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=15:antialias=true:autohint=true",
     "Noto Sans CJK SC:pixelsize=13:antialias=true:autohint=true",
 };
-static int borderpx = 2;
+static int borderpx = 12;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -109,38 +111,38 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* bg opacity */
+/* bg opacity (1.0 = opaque; <1.0 needs a compositor for transparency) */
 float alpha = 0.8;
 
-/* Gruvbox Dark terminal colors (16 first used in escape sequence) */
+/* Gruvbox dark palette — https://github.com/morhetz/gruvbox */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#282828", /* black */
-	"#cc241d", /* red */
-	"#98971a", /* green */
-	"#d79921", /* yellow */
-	"#458588", /* blue */
+	"#282828", /* black   */
+	"#cc241d", /* red     */
+	"#98971a", /* green   */
+	"#d79921", /* yellow  */
+	"#458588", /* blue    */
 	"#b16286", /* magenta */
-	"#689d6a", /* cyan */
-	"#a89984", /* white */
+	"#689d6a", /* cyan    */
+	"#a89984", /* white   */
 
 	/* 8 bright colors */
-	"#928374", /* bright black */
-	"#fb4934", /* bright red */
-	"#b8bb26", /* bright green */
-	"#fabd2f", /* bright yellow */
-	"#83a598", /* bright blue */
+	"#928374", /* bright black   */
+	"#fb4934", /* bright red     */
+	"#b8bb26", /* bright green   */
+	"#fabd2f", /* bright yellow  */
+	"#83a598", /* bright blue    */
 	"#d3869b", /* bright magenta */
-	"#8ec07c", /* bright cyan */
-	"#ebdbb2", /* bright white */
+	"#8ec07c", /* bright cyan    */
+	"#ebdbb2", /* bright white   */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#ebdbb2", /* default foreground */
-	"#282828", /* default background */
-	"#ebdbb2", /* cursor */
-	"#282828", /* reverse cursor */
+	"#ebdbb2", /* default foreground   */
+	"#282828", /* default background   */
+	"#ebdbb2", /* cursor              */
+	"#282828", /* reverse cursor      */
 };
 
 
@@ -152,6 +154,44 @@ unsigned int defaultfg = 256;
 unsigned int defaultbg = 257;
 unsigned int defaultcs = 258;
 static unsigned int defaultrcs = 259;
+
+/*
+ * Xresources preferences to load at startup and on SIGUSR1 (theme switch).
+ */
+enum resource_type {
+	STRING = 0,
+	INTEGER = 1,
+	FLOAT = 2
+};
+
+typedef struct {
+	char *name;
+	enum resource_type type;
+	void *dst;
+} ResourcePref;
+
+static ResourcePref resources[] = {
+	{ "font",        STRING,  &font },
+	{ "color0",      STRING,  &colorname[0] },
+	{ "color1",      STRING,  &colorname[1] },
+	{ "color2",      STRING,  &colorname[2] },
+	{ "color3",      STRING,  &colorname[3] },
+	{ "color4",      STRING,  &colorname[4] },
+	{ "color5",      STRING,  &colorname[5] },
+	{ "color6",      STRING,  &colorname[6] },
+	{ "color7",      STRING,  &colorname[7] },
+	{ "color8",      STRING,  &colorname[8] },
+	{ "color9",      STRING,  &colorname[9] },
+	{ "color10",     STRING,  &colorname[10] },
+	{ "color11",     STRING,  &colorname[11] },
+	{ "color12",     STRING,  &colorname[12] },
+	{ "color13",     STRING,  &colorname[13] },
+	{ "color14",     STRING,  &colorname[14] },
+	{ "color15",     STRING,  &colorname[15] },
+	{ "foreground",  STRING,  &colorname[256] },
+	{ "background",  STRING,  &colorname[257] },
+	{ "cursorColor", STRING,  &colorname[258] },
+};
 
 /*
  * Default shape of cursor
