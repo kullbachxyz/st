@@ -5,11 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Noto Sans Mono:size=13";
+static char *font = "monospace:size=12";
 /* Iosevka Nerd Font first, else Noto Color Emoji grabs the Nerd PUA glyphs. */
 static char *font2[] = {
-    "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=15:antialias=true:autohint=true",
+    "Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true",
     "Noto Sans CJK SC:pixelsize=13:antialias=true:autohint=true",
 };
 static int borderpx = 12;
